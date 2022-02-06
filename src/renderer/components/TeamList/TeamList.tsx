@@ -1,6 +1,17 @@
 /* eslint-disable react/no-array-index-key */
 import React, { FC, SetStateAction } from 'react';
 import EmptyScreen from '../EmptyScreen/EmptyTeamList';
+import {
+  StyleAddBtn,
+  StyleFormWrapper,
+  StyleH3Ttl,
+  StyleInputTeam,
+  StyleSectionContainer,
+  StyleSendBtn,
+  StyleTeamNames,
+  StyleTeamsWrapper,
+  StyleTitleWrapper,
+} from './TeamListStyle';
 
 interface Props {
   teamList: Array<string>;
@@ -35,46 +46,43 @@ const TeamList: FC<Props> = ({
   };
 
   return (
-    <section className="section_container list-section">
-      <div className="title_wrapper">
+    <StyleSectionContainer>
+      <StyleTitleWrapper>
         <h1>☕️ Random Coffee Chat</h1>
         <p>매주 월요일 돌아오는 랜덤커피 조 편성 :)</p>
-      </div>
-      <form className="input_wrapper" onSubmit={handleSubmitList}>
-        <input
-          className="team_input"
+      </StyleTitleWrapper>
+      <StyleFormWrapper onSubmit={handleSubmitList}>
+        <StyleInputTeam
           type="text"
           placeholder="Enter Team Name"
           onChange={onChangeTeamName}
           value={teamName}
         />
-        <button className="team_input_btn" type="submit">
-          ADD
-        </button>
-      </form>
+        <StyleAddBtn type="submit">ADD</StyleAddBtn>
+      </StyleFormWrapper>
 
       {teamList.length === 0 ? (
         <EmptyScreen />
       ) : (
-        <div className="teams_wrapper">
+        <StyleTeamsWrapper>
           {teamList.map((name: string, idx: number) => {
             return (
-              <ul key={idx} className="team_names">
+              <StyleTeamNames key={idx}>
                 <li>{name}</li>
                 <button type="button" onClick={() => handleDeleteName(idx)}>
                   삭제
                 </button>
-              </ul>
+              </StyleTeamNames>
             );
           })}
-        </div>
+        </StyleTeamsWrapper>
       )}
 
-      <h3 className="ttl_team_h3">총 {teamList.length} 명</h3>
-      <button onClick={handleClickSend} className="send_button" type="button">
+      <StyleH3Ttl>총 {teamList.length} 명</StyleH3Ttl>
+      <StyleSendBtn onClick={handleClickSend} type="button">
         생성하기
-      </button>
-    </section>
+      </StyleSendBtn>
+    </StyleSectionContainer>
   );
 };
 
