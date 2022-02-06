@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 import React, { useState } from 'react';
 import './App.css';
 import TeamList from './components/TeamList/TeamList';
@@ -9,7 +10,16 @@ const App = () => {
   const [randomTeam, setRandomTeam] = useState<Array<string>>([]);
 
   const handleClickSend = () => {
-    setRandomTeam(teamList);
+    const result = [];
+    for (let i = 0; i < teamList.length; i++) {
+      const randomNum = Math.floor(Math.random() * teamList.length);
+      if (result.indexOf(teamList[randomNum]) === -1) {
+        result.push(teamList[randomNum]);
+      } else {
+        i--;
+      }
+    }
+    setRandomTeam(result);
   };
 
   return (
