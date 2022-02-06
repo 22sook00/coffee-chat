@@ -3,5 +3,5 @@
 ### stack
 - React
 - Typescript
-- Styled-component
+- Styled-component (expect to apply emotion soon)
 
